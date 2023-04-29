@@ -14,11 +14,26 @@ spec:
     spec:
       containers:
       - name: gcp-devops-gke
-        images: gcr.io/plenary-hangout-385206/gcpdevops:latest
+        image: gcr.io/plenary-hangout-385206/gcpdevops:latest
         ports:
         - containerPort: 5000
         env:
           - name: PORT
             value: "5000"
 
-
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "gcp-devops-gke-service"
+  namespace: "gke-dev-ops-production"
+  labels:
+    app.kubernetes.io/managed-by: "gcp-cloud-build-deploy"
+spec:
+  ports:
+  - protocols: "TCP"
+    port: 80
+    targetPort: 5000
+  selector:
+    app: "gcp"
+  type: "LoadBalancer"
