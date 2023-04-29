@@ -8,6 +8,6 @@ steps:
   - run
   - --filename=gke.yaml
   - --image=gcr.io/$PROJECT_ID/gcpdevops
-  - --location=europe-west-2
-  - --cluster=gke-gcp-devops
+  - --location=europe-west1-b
+  - --cluster=gke-kodekloud
   - --namespace=gke-dev-ops-production
